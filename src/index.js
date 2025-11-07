@@ -28,7 +28,9 @@ app.get('/test', async (_req, res) => {
 
     try {
       await client.disconnect();
-    } catch (disconnectError) {}
+    } catch (_disconnectError) {
+      //ignore disconnect errors i mean
+    }
 
     res.send('failed to connect');
   }

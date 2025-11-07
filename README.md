@@ -1,4 +1,4 @@
-# Solerius Test - Express.js + Redis API
+# Test - Express.js Upload Api
 
 An Express.js API for uploading and verifying CSV's with names and emails with Redis for storing upload status containerised with Docker. 
 
