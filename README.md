@@ -30,6 +30,11 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
    - Progress tracked in memory with Redis as backup
 5. Status available via GET `/status/:uploadId`
 
+
+## Requirements
+- Docker with the compose plugin (not docker-compose)
+- Node 20+ if running tests/lint locally
+
 ## Quick Start
 
 1. Build and start the containers:
