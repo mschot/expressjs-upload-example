@@ -18,6 +18,18 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
 - Stream-based CSV parsing for memory efficiency
 - Unit and integration tests
 
+
+## Architecture
+
+1. File uploaded via POST `/upload`
+2. File validated (CSV, max 5MB by default can be changed in config)
+3. Upload ID generated and returned immediately
+4. Background processing starts:
+   - CSV parsed using streams
+   - Email validation for each record (max 5 concurrent)
+   - Progress tracked in memory with Redis as backup
+5. Status available via GET `/status/:uploadId`
+
 ## Quick Start
 
 1. Build and start the containers:
@@ -26,42 +38,6 @@ make
 ```
 
 2. The API will be available at `http://localhost:8335`
-
-## Make Commands
-
-The project includes a Makefile for common tasks:
-
-```bash
-# Start the application 
-make
-
-#rebuild in case of npm changes
-make build 
-
-# Stop containers
-make down
-
-# Restart containers
-make restart
-
-# View application logs
-make logs
-
-# Run tests
-make test
-
-# Run linter
-make lint
-
-# Run tests in watch mode
-make test-watch
-
-# Run tests with coverage
-make test-coverage
-
-# Stop containers and remove volumes
-make clean
-```
 
 ## API Endpoints
 
@@ -141,16 +117,43 @@ make build
 ```
 as this is not loaded from the host machine
 
-## Architecture
+### Make Commands
 
-1. File uploaded via POST `/upload`
-2. File validated (CSV, max 5MB by default can be changed in config)
-3. Upload ID generated and returned immediately
-4. Background processing starts:
-   - CSV parsed using streams
-   - Email validation for each record (max 5 concurrent)
-   - Progress tracked in memory with Redis as backup
-5. Status available via GET `/status/:uploadId`
+The project includes a Makefile for common tasks:
+
+```bash
+# Start the application 
+make
+
+#rebuild in case of npm changes
+make build 
+
+# Stop containers
+make down
+
+# Restart containers
+make restart
+
+# View application logs
+make logs
+
+# Run tests
+make test
+
+# Run linter
+make lint
+
+# Run tests in watch mode
+make test-watch
+
+# Run tests with coverage
+make test-coverage
+
+# Stop containers and remove volumes
+make clean
+```
+
+
 
 
 ### Network
