@@ -24,12 +24,18 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
 
 ## Quick Start
 
-1. Build and start the containers:
+1. Clone and cd
+```bash 
+git clone git@github.com:mschot/expressjs-upload-example.git
+cd expressjs-upload-example
+``` 
+
+2. Build and start the containers:
 ```bash
 make
 ```
 
-2. The API will be available at `http://localhost:8335`
+3. The API will be available at `http://localhost:8335`
 
 ## API Endpoints
 
