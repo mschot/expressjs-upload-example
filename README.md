@@ -22,10 +22,46 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
 
 1. Build and start the containers:
 ```bash
-docker compose up
+make
 ```
 
 2. The API will be available at `http://localhost:8335`
+
+## Make Commands
+
+The project includes a Makefile for common tasks:
+
+```bash
+# Start the application 
+make
+
+#rebuild in case of npm changes
+make build 
+
+# Stop containers
+make down
+
+# Restart containers
+make restart
+
+# View application logs
+make logs
+
+# Run tests
+make test
+
+# Run linter
+make lint
+
+# Run tests in watch mode
+make test-watch
+
+# Run tests with coverage
+make test-coverage
+
+# Stop containers and remove volumes
+make clean
+```
 
 ## API Endpoints
 
@@ -101,7 +137,7 @@ The current directory is mounted into the container at `/app`, so any changes yo
 If you make changes to installed modules, rebuild the container using 
 
 ```bash
-docker compose up --build
+make build
 ```
 as this is not loaded from the host machine
 
@@ -131,6 +167,18 @@ The project includes comprehensive tests:
 
 Run tests with:
 ```bash
+make test
+# or
 npm test
+```
+
+For watch mode:
+```bash
+make test-watch
+```
+
+For coverage:
+```bash
+make test-coverage
 ```
 
