@@ -3,9 +3,9 @@
 An Express.js API for uploading and verifying CSV files with names and emails. Performs asynchronous email validation with concurrency limiting and stores upload status in Redis. Containerised with Docker.
 
 ## Considerations
-- Although not mentioned in requirements, names are being checked to see if the exist, further validation could be added depending on requirements
-- Streaming of CSV happens twice to count the total rows before processing because example status response showed requirement for percentage completed. We could change this to not be aware of total rows and simply show completed rows, if this would be enough for requirements to avoid streaming the file twice.
-- Changed the mockValidateEmail to use setTimeout from nodes built in timers/promises to follow consistent async/await pattern.
+- Although not mentioned in requirements, names are being checked to see if they exist, further validation could be added depending on requirements.
+- Streaming of CSV happens twice to count the total rows before processing, because the example status response showed a requirement for the percentage completed. We could change this to not be aware of the total rows and simply show completed rows, if this would be enough to meet requirements.
+- Changed the mockValidateEmail to use setTimeout from nodes built in timers/promises package to follow consistent async/await pattern.
 - Used vitest instead of jest for more stable ES module support 
 
 ## Features
@@ -16,7 +16,7 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
 - Rate limiting (10 requests/minute)
 - Redis for persistent status storage
 - Stream-based CSV parsing for memory efficiency
-- Comprehensive unit and integration tests
+- Unit and integration tests
 
 ## Quick Start
 
