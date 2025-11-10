@@ -18,19 +18,6 @@ An Express.js API for uploading and verifying CSV files with names and emails. P
 - Stream-based CSV parsing for memory efficiency
 - Unit and integration tests
 
-
-## Architecture
-
-1. File uploaded via POST `/upload`
-2. File validated (CSV, max 5MB by default can be changed in config)
-3. Upload ID generated and returned immediately
-4. Background processing starts:
-   - CSV parsed using streams
-   - Email validation for each record (max 5 concurrent)
-   - Progress tracked in memory with Redis as backup
-5. Status available via GET `/status/:uploadId`
-
-
 ## Requirements
 - Docker with the compose plugin (not docker-compose)
 - Node 20+ if running tests/lint locally
@@ -157,15 +144,7 @@ make test-coverage
 # Stop containers and remove volumes
 make clean
 ```
-
-
-
-
-### Network
-
-Redis is only accessible via the internal Docker network to avoid port conflicts with localhost services.
-
-## Testing
+### Testing
 
 The project includes comprehensive tests:
 
@@ -190,3 +169,17 @@ For coverage:
 make test-coverage
 ```
 
+## Architecture
+
+1. File uploaded via POST `/upload`
+2. File validated (CSV, max 5MB by default can be changed in config)
+3. Upload ID generated and returned immediately
+4. Background processing starts:
+   - CSV parsed using streams
+   - Email validation for each record (max 5 concurrent)
+   - Progress tracked in memory with Redis as backup
+5. Status available via GET `/status/:uploadId`
+
+## Network
+
+Redis is only accessible via the internal Docker network to avoid port conflicts with localhost services.
