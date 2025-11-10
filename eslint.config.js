@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
@@ -9,11 +10,7 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        process: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
-        Buffer: 'readonly',
-        console: 'readonly',
+        ...globals.node,
       },
     },
     rules: {
@@ -22,6 +19,16 @@ export default [
         argsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_'
       }],
+    },
+  },
+  {
+    files: ['tests/**/*.test.js'],
+    languageOptions: {
+      globals: {
+        //vitest uses jest globals
+        ...globals.jest,
+        vi: 'readonly',
+      },
     },
   },
 ];

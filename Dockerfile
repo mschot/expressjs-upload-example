@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8335
 
-CMD ["node", "--watch", "src/index.js"]
+CMD ["node", "--watch", "src/server.js"]

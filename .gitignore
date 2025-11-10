@@ -21,3 +21,7 @@ build
 coverage
 
 *.log
+logs/*.log
+
+uploads/*
+!uploads/.gitkeep
